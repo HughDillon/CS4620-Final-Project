@@ -4,12 +4,13 @@ from tkinter import ttk
 import sqlite3
 from typing import Sized
 
+## Clear the display box
 def clearDisplay():
     for item in displaytree.get_children():
       displaytree.delete(item)  
 
 
-
+## Output the ADWARE table
 def show_adware():
     clearDisplay()
     connection = sqlite3.connect('malwaredatabase.db')
