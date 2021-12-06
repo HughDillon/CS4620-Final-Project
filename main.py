@@ -4,10 +4,16 @@ from tkinter import ttk
 import sqlite3
 from typing import Sized
 
+
+
+
+
+
 ## Clear the display box
 def clearDisplay():
     for item in displaytree.get_children():
       displaytree.delete(item)  
+
 
 
 ## Ouput ADWARE table
@@ -193,6 +199,59 @@ def show_zeroday():
     displaytree.heading(1, text="SR-Num")
     displaytree.heading(2, text="Malware Name")
 
+def insertbutton():
+    ## open a new window
+    #initialize window and display frame
+    root = Tk()
+    root.title('Add an entry to the database')
+    root.geometry("500x200")
+    displayframe = Frame(root)
+    displayframe.grid()
+    srnum = Entry(root, width=30)
+    srnum.grid(row=0, column=1, padx=20)
+    family = Entry(root, width=30)
+    family.grid(row=1, column=1, padx=20)
+    numsamples = Entry(root, width=30)
+    numsamples.grid(row=2, column=1, padx=20)
+    description = Entry(root, width=30)
+    description.grid(row=3, column=1, padx=20)
+    ##text box labels
+    srnum_label = Label(root, text="SR_Num")
+    srnum_label.grid(row=0, column=0)
+    family_label = Label(root, text="Family")
+    family_label.grid(row=1, column=0)
+    numsamples_label = Label(root, text="Num_Captured_Samples")
+    numsamples_label.grid(row=2, column=0)
+    description_label = Label(root, text="Description")
+    description_label.grid(row=3, column=0)
+    ##submit button
+    def submit():
+            ## Delete values in text boxes from previous submission
+            srnum.delete(0, END)
+            family.delete(0, END)
+            numsamples.delete(0, END)
+            description.delete(0, END)
+
+            connection = sqlite3.connect('malwaredatabase.db')
+            c = connection.cursor()
+
+            # Insert into the table
+            c.execute("INSERT OR IGNORE INTO ADWARE VALUES (:srnum, :family, :numsamples, :description)",
+            {
+                'srnum' : srnum.get(),
+                'family' : family.get(),
+                'numsamples' : numsamples.get(),
+                'description' : description.get()
+            }
+            )
+            ## Save changes and close connection to DB
+            connection.commit()
+            connection.close()
+    submit_button = Button(root, text="Add an entry to the Database", command=submit)
+    submit_button.grid(row=6, column=0, columnspan=2, pady=10, padx=10, ipadx=100)
+            
+
+
 #initialize window and display frame
 root = Tk()
 root.title('Malware Database Browser')
@@ -257,8 +316,13 @@ smsButton = ttk.Button(buttonFrame,text="SMS",command=show_trojansms)
 smsButton.pack(side=tkinter.LEFT, padx=5)
 spyButton = ttk.Button(buttonFrame,text="Spy",command=show_trojanspy)
 spyButton.pack(side=tkinter.LEFT, padx=5)
+
+
 ##zeroDayButton = ttk.Button(buttonFrame,text="Zero-Day",command=show_zeroday)
 ##zeroDayButton.pack(side=tkinter.LEFT, padx=5)
+
+insertButton = ttk.Button(buttonFrame, text="Insert an entry", command=insertbutton)
+insertButton.pack(side=tkinter.LEFT, padx=5)
 
 connection.close()
 root.mainloop()
