@@ -4,12 +4,13 @@ from tkinter import ttk
 import sqlite3
 from typing import Sized
 
+## Clear the display box
 def clearDisplay():
     for item in displaytree.get_children():
       displaytree.delete(item)  
 
 
-
+## Ouput ADWARE table
 def show_adware():
     clearDisplay()
     connection = sqlite3.connect('malwaredatabase.db')
@@ -23,8 +24,174 @@ def show_adware():
     displaytree.heading(1, text="SR-Num")
     displaytree.heading(2, text="Malware Name")
 
+## Output BACKDOOR table
+def show_backdoor():
+    clearDisplay()
+    connection = sqlite3.connect('malwaredatabase.db')
+    cursor = connection.cursor()
+    query = "SELECT * From BACKDOOR"
+    cursor.execute(query)
+    rows = cursor.fetchall()
+    total = cursor.rowcount
+    for i in rows:
+        displaytree.insert('', 'end', values=i)
+    displaytree.heading(1, text="SR-Num")
+    displaytree.heading(2, text="Malware Name")
+
+## Output FILE_INFECTOR table
+def show_fileinfector():
+    clearDisplay()
+    connection = sqlite3.connect('malwaredatabase.db')
+    cursor = connection.cursor()
+    query = "SELECT * From FILE_INFECTOR"
+    cursor.execute(query)
+    rows = cursor.fetchall()
+    total = cursor.rowcount
+    for i in rows:
+        displaytree.insert('', 'end', values=i)
+    displaytree.heading(1, text="SR-Num")
+    displaytree.heading(2, text="Malware Name")
     
 
+## Output PUA table
+def show_pua():
+    clearDisplay()
+    connection = sqlite3.connect('malwaredatabase.db')
+    cursor = connection.cursor()
+    query = "SELECT * From PUA"
+    cursor.execute(query)
+    rows = cursor.fetchall()
+    total = cursor.rowcount
+    for i in rows:
+        displaytree.insert('', 'end', values=i)
+    displaytree.heading(1, text="SR-Num")
+    displaytree.heading(2, text="Malware Name")
+
+    ## Output RANSOMWARE table
+def show_ransomware():
+    clearDisplay()
+    connection = sqlite3.connect('malwaredatabase.db')
+    cursor = connection.cursor()
+    query = "SELECT * From RANSOMWARE"
+    cursor.execute(query)
+    rows = cursor.fetchall()
+    total = cursor.rowcount
+    for i in rows:
+        displaytree.insert('', 'end', values=i)
+    displaytree.heading(1, text="SR-Num")
+    displaytree.heading(2, text="Malware Name")
+
+    ## Output RISKWARE table
+def show_riskware():
+    clearDisplay()
+    connection = sqlite3.connect('malwaredatabase.db')
+    cursor = connection.cursor()
+    query = "SELECT * From RISKWARE"
+    cursor.execute(query)
+    rows = cursor.fetchall()
+    total = cursor.rowcount
+    for i in rows:
+        displaytree.insert('', 'end', values=i)
+    displaytree.heading(1, text="SR-Num")
+    displaytree.heading(2, text="Malware Name")
+
+    ## Output SCAREWARE table
+def show_scareware():
+    clearDisplay()
+    connection = sqlite3.connect('malwaredatabase.db')
+    cursor = connection.cursor()
+    query = "SELECT * From SCAREWARE"
+    cursor.execute(query)
+    rows = cursor.fetchall()
+    total = cursor.rowcount
+    for i in rows:
+        displaytree.insert('', 'end', values=i)
+    displaytree.heading(1, text="SR-Num")
+    displaytree.heading(2, text="Malware Name")
+
+    ## Output TROJAN table
+def show_trojan():
+    clearDisplay()
+    connection = sqlite3.connect('malwaredatabase.db')
+    cursor = connection.cursor()
+    query = "SELECT * From TROJAN"
+    cursor.execute(query)
+    rows = cursor.fetchall()
+    total = cursor.rowcount
+    for i in rows:
+        displaytree.insert('', 'end', values=i)
+    displaytree.heading(1, text="SR-Num")
+    displaytree.heading(2, text="Malware Name")
+
+    ## Output TROJANBANKER table
+def show_trojanbanker():
+    clearDisplay()
+    connection = sqlite3.connect('malwaredatabase.db')
+    cursor = connection.cursor()
+    query = "SELECT * From TROJAN_BANKER"
+    cursor.execute(query)
+    rows = cursor.fetchall()
+    total = cursor.rowcount
+    for i in rows:
+        displaytree.insert('', 'end', values=i)
+    displaytree.heading(1, text="SR-Num")
+    displaytree.heading(2, text="Malware Name")
+
+    ## Output TROJANDROPPER table
+def show_trojandropper():
+    clearDisplay()
+    connection = sqlite3.connect('malwaredatabase.db')
+    cursor = connection.cursor()
+    query = "SELECT * From TROJAN_DROPPER"
+    cursor.execute(query)
+    rows = cursor.fetchall()
+    total = cursor.rowcount
+    for i in rows:
+        displaytree.insert('', 'end', values=i)
+    displaytree.heading(1, text="SR-Num")
+    displaytree.heading(2, text="Malware Name")
+
+    ## Output TROJANDSMS table
+def show_trojansms():
+    clearDisplay()
+    connection = sqlite3.connect('malwaredatabase.db')
+    cursor = connection.cursor()
+    query = "SELECT * From TROJAN_SMS"
+    cursor.execute(query)
+    rows = cursor.fetchall()
+    total = cursor.rowcount
+    for i in rows:
+        displaytree.insert('', 'end', values=i)
+    displaytree.heading(1, text="SR-Num")
+    displaytree.heading(2, text="Malware Name")
+
+## Output TROJANSPY table
+def show_trojandropper():
+    clearDisplay()
+    connection = sqlite3.connect('malwaredatabase.db')
+    cursor = connection.cursor()
+    query = "SELECT * From TROJAN_SPY"
+    cursor.execute(query)
+    rows = cursor.fetchall()
+    total = cursor.rowcount
+    for i in rows:
+        displaytree.insert('', 'end', values=i)
+    displaytree.heading(1, text="SR-Num")
+    displaytree.heading(2, text="Malware Name")
+
+    ## Output ZERODAY table
+def show_trojandropper():
+    clearDisplay()
+    connection = sqlite3.connect('malwaredatabase.db')
+    cursor = connection.cursor()
+    query = "SELECT * From ZERO_DAY"
+    cursor.execute(query)
+    rows = cursor.fetchall()
+    total = cursor.rowcount
+    for i in rows:
+        displaytree.insert('', 'end', values=i)
+    displaytree.heading(1, text="SR-Num")
+    displaytree.heading(2, text="Malware Name")
 
 #initialize window and display frame
 root = Tk()
