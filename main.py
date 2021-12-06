@@ -166,7 +166,7 @@ def show_trojansms():
     displaytree.heading(2, text="Malware Name")
 
 ## Output TROJANSPY table
-def show_trojandropper():
+def show_trojanspy():
     clearDisplay()
     connection = sqlite3.connect('malwaredatabase.db')
     cursor = connection.cursor()
@@ -179,8 +179,8 @@ def show_trojandropper():
     displaytree.heading(1, text="SR-Num")
     displaytree.heading(2, text="Malware Name")
 
-    ## Output ZERODAY table
-def show_trojandropper():
+ ## Output ZERODAY table
+def show_zeroday():
     clearDisplay()
     connection = sqlite3.connect('malwaredatabase.db')
     cursor = connection.cursor()
@@ -233,32 +233,32 @@ search_by_type_label.pack(side=LEFT)
 
 adwareButton = ttk.Button(buttonFrame,text="Adware",command=show_adware)
 adwareButton.pack(side=tkinter.LEFT, padx=5)
-backdoorButton = ttk.Button(buttonFrame,text="Backdoor",command=show_adware)
+backdoorButton = ttk.Button(buttonFrame,text="Backdoor",command=show_backdoor)
 backdoorButton.pack(side=tkinter.LEFT, padx=5)
-fileInjectorButton = ttk.Button(buttonFrame,text="File Injector",command=show_adware)
+fileInjectorButton = ttk.Button(buttonFrame,text="File Infector",command=show_fileinfector)
 fileInjectorButton.pack(side=tkinter.LEFT, padx=5)
-noCatButton = ttk.Button(buttonFrame,text="No Category",command=show_adware)
-noCatButton.pack(side=tkinter.LEFT, padx=5)
-PUAButton = ttk.Button(buttonFrame,text="Potentially Unwanted Application",command=show_adware)
+##noCatButton = ttk.Button(buttonFrame,text="No Category",command=show_adware)
+##noCatButton.pack(side=tkinter.LEFT, padx=5)
+PUAButton = ttk.Button(buttonFrame,text="Potentially Unwanted Application",command=show_pua)
 PUAButton.pack(side=tkinter.LEFT, padx=5)
-RansomButton = ttk.Button(buttonFrame,text="Ransomware",command=show_adware)
+RansomButton = ttk.Button(buttonFrame,text="Ransomware",command=show_ransomware)
 RansomButton.pack(side=tkinter.LEFT, padx=5)
-riskButton = ttk.Button(buttonFrame,text="Riskware",command=show_adware)
+riskButton = ttk.Button(buttonFrame,text="Riskware",command=show_riskware)
 riskButton.pack(side=tkinter.LEFT, padx=5)
-scareButton = ttk.Button(buttonFrame,text="Scareware",command=show_adware)
+scareButton = ttk.Button(buttonFrame,text="Scareware",command=show_scareware)
 scareButton.pack(side=tkinter.LEFT, padx=5)
-trojanButton = ttk.Button(buttonFrame,text="Trojan",command=show_adware)
+trojanButton = ttk.Button(buttonFrame,text="Trojan",command=show_trojan)
 trojanButton.pack(side=tkinter.LEFT, padx=5)
-bankerButton = ttk.Button(buttonFrame,text="Banker",command=show_adware)
+bankerButton = ttk.Button(buttonFrame,text="Banker",command=show_trojanbanker)
 bankerButton.pack(side=tkinter.LEFT, padx=5)
-dropperButton = ttk.Button(buttonFrame,text="Dropper",command=show_adware)
+dropperButton = ttk.Button(buttonFrame,text="Dropper",command=show_trojandropper)
 dropperButton.pack(side=tkinter.LEFT, padx=5)
-smsButton = ttk.Button(buttonFrame,text="SMS",command=show_adware)
+smsButton = ttk.Button(buttonFrame,text="SMS",command=show_trojansms)
 smsButton.pack(side=tkinter.LEFT, padx=5)
-spyButton = ttk.Button(buttonFrame,text="Spy",command=show_adware)
+spyButton = ttk.Button(buttonFrame,text="Spy",command=show_trojanspy)
 spyButton.pack(side=tkinter.LEFT, padx=5)
-zeroDayButton = ttk.Button(buttonFrame,text="Zero-Day",command=show_adware)
-zeroDayButton.pack(side=tkinter.LEFT, padx=5)
+##zeroDayButton = ttk.Button(buttonFrame,text="Zero-Day",command=show_zeroday)
+##zeroDayButton.pack(side=tkinter.LEFT, padx=5)
 
 connection.close()
 root.mainloop()
