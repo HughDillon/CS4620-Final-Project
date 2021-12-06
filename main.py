@@ -270,7 +270,7 @@ def delete():
     print(delete_box.get())
     print(srnum_box.get())
     
-    def deleteentry():
+    ##def deleteentry():
         ##query = StringVar()
         ##query = "DELETE FROM % s WHERE SR_Num = % s" % deletetable, deletesrnum
         ##print(query)
