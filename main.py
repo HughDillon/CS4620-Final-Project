@@ -215,48 +215,56 @@ def insertbutton():
     displayframe = Frame(root)
     displayframe.grid()
     srnum = Entry(root, width=30)
-    srnum.grid(row=0, column=1, padx=20)
+    srnum.grid(row=1, column=1, padx=20)
     family = Entry(root, width=30)
-    family.grid(row=1, column=1, padx=20)
+    family.grid(row=2, column=1, padx=20)
     numsamples = Entry(root, width=30)
-    numsamples.grid(row=2, column=1, padx=20)
+    numsamples.grid(row=3, column=1, padx=20)
     description = Entry(root, width=30)
-    description.grid(row=3, column=1, padx=20)
+    description.grid(row=4, column=1, padx=20)
+
+    table = Entry(root, width=30)
+    table.grid(row=0, column=1, padx=20)
     ##text box labels
-    srnum_label = Label(root, text="SR_Num")
-    srnum_label.grid(row=0, column=0)
-    family_label = Label(root, text="Family")
-    family_label.grid(row=1, column=0)
-    numsamples_label = Label(root, text="Num_Captured_Samples")
-    numsamples_label.grid(row=2, column=0)
-    description_label = Label(root, text="Description")
-    description_label.grid(row=3, column=0)
+    srnum_label = Label(root, text="SR_Num:")
+    srnum_label.grid(row=1, column=0)
+    family_label = Label(root, text="Family:")
+    family_label.grid(row=2, column=0)
+    numsamples_label = Label(root, text="Num_Captured_Samples:")
+    numsamples_label.grid(row=3, column=0)
+    description_label = Label(root, text="Description:")
+    description_label.grid(row=4, column=0)
+    description_label = Label(root, text="Virustype:")
+    description_label.grid(row=0, column=0)
     ##submit button
     def submit():
             ## Delete values in text boxes from previous submission
-            srnum.delete(0, END)
-            family.delete(0, END)
-            numsamples.delete(0, END)
-            description.delete(0, END)
-
-            connection = sqlite3.connect('malwaredatabase.db')
-            c = connection.cursor()
-
-            # Insert into the table
-            c.execute("INSERT OR IGNORE INTO ADWARE VALUES (:srnum, :family, :numsamples, :description)",
-            {
-                'srnum' : srnum.get(),
-                'family' : family.get(),
-                'numsamples' : numsamples.get(),
-                'description' : description.get()
-            }
-            )
-            ## Save changes and close connection to DB
-            connection.commit()
-            connection.close()
-    submit_button = Button(root, text="Add an entry to the Database", command=submit)
-    submit_button.grid(row=6, column=0, columnspan=2, pady=10, padx=10, ipadx=100)
             
+
+        connection = sqlite3.connect('malwaredatabase.db')
+        c = connection.cursor()
+        print("INSERT OR IGNORE INTO " + table.get() + " VALUES (" + srnum.get() + ", " + "'" + family.get() + "'" + ", " + numsamples.get() + ", " + "'" + description.get() + "'" + ")")
+        c.execute("INSERT OR IGNORE INTO " + table.get() + " VALUES (" + srnum.get() + ", " + "'" + family.get() + "'" + ", " + numsamples.get() + ", " + "'" + description.get() + "'" + ")")
+        # Insert into the table
+        ##c.execute("INSERT OR IGNORE INTO ADWARE VALUES (:srnum, :family, :numsamples, :description)",
+        ##{
+            ##'srnum' : srnum.get(),
+            ##'family' : family.get(),
+            ##'numsamples' : numsamples.get(),
+            ##'description' : description.get()
+        ##}
+        ##)
+        ## Save changes and close connection to DB
+        srnum.delete(0, END)
+        family.delete(0, END)
+        numsamples.delete(0, END)
+        description.delete(0, END)  
+        table.delete(0, END)  
+        connection.commit()
+        c.close()
+        connection.close()
+    submit_button = Button(root, text="Add an entry to the Database", command=submit)
+    submit_button.grid(row=6, column=0, columnspan=2, pady=10, padx=10, ipadx=100)    
 def mainScreenButton():
     clearDisplay()
     connection = sqlite3.connect('malwaredatabase.db')
@@ -365,15 +373,14 @@ def deleteitem():
         string = "DELETE FROM " + delete_box.get() + " WHERE SR_Num = " + srnum_box.get()
         print(string)
         c.execute("DELETE FROM " + delete_box.get() + " WHERE SR_NUM = " + srnum_box.get())
+        delete_box.delete(0, END)
+        srnum_box.delete(0, END) 
         connection.commit()
         connection.close()
 
     delete_button = Button(root, text="Delete entry", command=deleteentry)
     delete_button.grid(row=4, column=0, columnspan=2, pady=10, padx=10, ipadx=100)
-    delete_box.delete(0, END)
-    srnum_box.delete(0, END)
-    connection.commit()
-    connection.close()
+    
     
 
 #initialize window and display frame
