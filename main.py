@@ -3,6 +3,7 @@ from tkinter import *
 from tkinter import ttk
 import sqlite3
 from typing import Sized
+import webbrowser
 
 
 ## Clear the display box
@@ -392,7 +393,136 @@ def deleteitem():
     delete_button = Button(root, text="Delete entry", command=deleteentry)
     delete_button.grid(row=4, column=0, columnspan=2, pady=10, padx=10, ipadx=100)
     
+   
+
+def compareTwoTables():
     
+    searchWindow = Tk()
+    searchWindow.title('Compare Two Tables')
+    searchWindow.geometry("500x500")
+    
+    malwareName = StringVar()
+    numSamples = IntVar()
+    options = [
+        "Adware",
+        "Backdoor",
+        "File_Infector",
+        "PUA",
+        "Ransomware",
+        "Riskware",
+        "Scareware",
+        "Trojan",
+        "Trojan_Banker",
+        "Trojan_Dropper",
+        "Trojan_SMS",
+        "Trojan_Spy",
+    ]
+
+    typeFrame= ttk.Frame(searchWindow)
+    typeFrame.pack(side=tkinter.TOP,pady=10)
+    selectionCombo0 = ttk.Combobox(typeFrame,values=options,width=30,)
+    selectionCombo0['values'] = options
+    selectionCombo0.pack(side= tkinter.RIGHT, padx=10)
+    tableLabel0 = ttk.Label(typeFrame, text="Select a table to compare")
+    tableLabel0.pack(side=tkinter.LEFT,padx=5)
+
+    typeFrame= ttk.Frame(searchWindow)
+    typeFrame.pack(side=tkinter.TOP,pady=12)
+    selectionCombo1 = ttk.Combobox(typeFrame,values=options,width=30,)
+    selectionCombo1['values'] = options
+    selectionCombo1.pack(side= tkinter.RIGHT, padx=12)
+    tableLabel1 = ttk.Label(typeFrame, text="Select another table")
+    tableLabel1.pack(side=tkinter.LEFT,padx=5)
+
+    ## Compare two tables
+    ##SELECT * FROM table1 INNER JOIN table2 ON table1.Num_Captured_Samples = table2.Num_Captured_Samples
+    def compare():
+        clearDisplay()
+        connection = sqlite3.connect('malwaredatabase.db')
+        cursor = connection.cursor()
+        query = "SELECT * FROM " + selectionCombo0.get() + " INNER JOIN " + selectionCombo1.get() + " ON " + selectionCombo0.get() + ".Num_Captured_Samples = " + selectionCombo1.get() + ".Num_Captured_Samples"
+        cursor.execute(query)
+        rows = cursor.fetchall()
+        total = cursor.rowcount
+        for i in rows:
+            displaytree.insert('', 'end', values=i)
+ 
+
+        connection.close()
+
+
+    submitbuttonFrame = ttk.Frame(searchWindow)
+    submitbuttonFrame.pack(side=tkinter.BOTTOM, pady=20)
+    submitbutton = ttk.Button(submitbuttonFrame, text="Submit", command=compare)
+    submitbutton.pack(side=tkinter.TOP)
+    searchWindow.mainloop()
+
+## Open a malwarebytes information page on a certain virustype
+def moreInfoBrowserOpener():
+    searchWindow = Tk()
+    searchWindow.title('More Information')
+    searchWindow.geometry("500x200")
+    
+    malwareName = StringVar()
+    options = [
+        "Adware",
+        "Backdoor",
+        "File_Infector",
+        "PUA",
+        "Ransomware",
+        "Riskware",
+        "Scareware",
+        "Trojan",
+        "Trojan_Banker",
+        "Trojan_Dropper",
+        "Trojan_SMS",
+        "Trojan_Spy",
+    ]
+
+    typeFrame= ttk.Frame(searchWindow)
+    typeFrame.pack(side=tkinter.TOP,pady=10)
+    selectionCombo0 = ttk.Combobox(typeFrame,values=options,width=30,)
+    selectionCombo0['values'] = options
+    selectionCombo0.pack(side= tkinter.RIGHT, padx=10)
+    type = ttk.Label(typeFrame, text="Select a virustype to get more information about\nThis will open a page\non your machines default browser")
+    type.pack(side=tkinter.LEFT,padx=5)
+    
+    
+    ##webbrowser.open('http://youtube.com')  https://www.malwarebytes.com/adware
+    def openPage():
+            if selectionCombo0.get() == "File_Infector":
+               url = "https://blog.malwarebytes.com/detections/sivis-virus-fileinfector-dds/"
+               webbrowser.open(url) 
+            elif selectionCombo0.get() == "PUA":
+                url = "https://support.malwarebytes.com/hc/en-us/articles/360038522194-Potentially-Unwanted-Programs-and-Potentially-Unwanted-Modifications-Frequently-Asked-Questions-for-Endpoint-Security-customers"
+                webbrowser.open(url)
+            elif selectionCombo0.get() == "Riskware":
+                url = "https://blog.malwarebytes.com/detections/riskware/"
+                webbrowser.open(url)
+            elif selectionCombo0.get() == "Scareware":
+                url = "https://blog.malwarebytes.com/101/2021/07/what-is-scareware/"
+                webbrowser.open(url)
+            elif selectionCombo0.get() == "Trojan_Banker":
+                url = "https://blog.malwarebytes.com/detections/trojan-trickbot/"
+                webbrowser.open(url)
+            elif selectionCombo0.get() == "Trojan_Dropper":
+                url = "https://blog.malwarebytes.com/detections/trojan-dropper/"
+                webbrowser.open(url)
+            elif selectionCombo0.get() == "Trojan_SMS":
+                url = "https://blog.malwarebytes.com/threats/sms-trojan/"
+                webbrowser.open(url)
+            elif selectionCombo0.get() == "Trojan_Spy":
+                url = "https://blog.malwarebytes.com/detections/android-trojan-spy-joker-gfth/"
+                webbrowser.open(url)
+            else:
+                url = "https://www.malwarebytes.com/" + selectionCombo0.get()
+                webbrowser.open(url)
+
+    submitbuttonFrame = ttk.Frame(searchWindow)
+    submitbuttonFrame.pack(side=tkinter.BOTTOM, pady=20)
+    submitbutton = ttk.Button(submitbuttonFrame, text="Submit", command=openPage)
+    submitbutton.pack(side=tkinter.TOP)
+    searchWindow.mainloop()
 
 #initialize window and display frame
 root = Tk()
@@ -454,8 +584,22 @@ deleteButton.pack(side=tkinter.TOP, padx=5)
 
 mainMenuButtonFrame = Frame(root)
 mainMenuButtonFrame.pack(fill=tkinter.BOTH,side=tkinter.TOP, pady=5)
-menuButton = ttk.Button(mainMenuButtonFrame,text="Return data to original view",command=mainScreenButton)
+menuButton = ttk.Button(mainMenuButtonFrame,text="Return to the main menu screen",command=mainScreenButton)
 menuButton.pack(side=tkinter.TOP, pady=5)
+
+compareTwoTablesFrame = Frame(root)
+compareTwoTablesFrame = Frame(root)
+compareTwoTablesFrame.pack(fill=tkinter.BOTH,side=tkinter.TOP, pady=7)
+compareTwoTablesButton = ttk.Button(mainMenuButtonFrame,text="Match number of samples between two tables",command=compareTwoTables)
+compareTwoTablesButton.pack(side=tkinter.TOP, pady=7)
+
+
+moreInfoFrame = Frame(root)
+moreInfoFrame = Frame(root)
+moreInfoFrame.pack(fill=tkinter.BOTH,side=tkinter.TOP, pady=25)
+moreInfoButton = ttk.Button(mainMenuButtonFrame,text="Get more information on a virustype",command=moreInfoBrowserOpener)
+moreInfoButton.pack(side=tkinter.TOP, pady=7)
+
 
 
 
