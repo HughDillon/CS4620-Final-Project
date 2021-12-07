@@ -342,6 +342,41 @@ def searchDB():
     sbutton.pack(side=tkinter.TOP)
     searchWindow.mainloop()
 
+
+def deleteitem():
+    root = Tk()
+    root.title('Delete an entry from the database')
+    root.geometry("500x200")
+    displayframe = Frame(root)
+    displayframe.grid()
+    connection = sqlite3.connect('malwaredatabase.db')
+    c = connection.cursor()
+
+    delete_box = Entry(root, width=30)
+    delete_box.grid(row=0, column=1)
+    delete_box_label = Label(
+    root, text="Select virus type table to delete from:")
+    delete_box_label.grid(row=0, column=0)
+    srnum_box = Entry(root, width=30)
+    srnum_box.grid(row=1, column=1)
+    srnum_box_label = Label(root, text="Delete SR Number:")
+    srnum_box_label.grid(row=1, column=0)
+
+    def deleteentry():
+        ...
+       ## query = StringVar()
+       ## query = "DELETE FROM % s WHERE SR_Num = % s" % deletetable, deletesrnum
+        ##print(query)
+        ##print("hello")
+        ##query = "Delete FROM {} WHERE SR_Num = {}".format(deletetable, deletesrnum)
+
+    delete_button = Button(root, text="Delete entry", command=deleteentry())
+    delete_button.grid(row=4, column=0, columnspan=2, pady=10, padx=10, ipadx=100)
+    delete_box.delete(0, END)
+    srnum_box.delete(0, END)
+    connection.commit()
+    connection.close()
+
 #initialize window and display frame
 root = Tk()
 root.title('Malware Database Browser')
@@ -403,6 +438,9 @@ searchButton = ttk.Button(editingButtonFrame, text="Search Database", command=se
 searchButton.pack(side=tkinter.TOP, pady=10)
 insertButton = ttk.Button(editingButtonFrame, text="Insert an entry", command=insertbutton)
 insertButton.pack(side=tkinter.TOP, pady=10)
+deleteButton = ttk.Button(editingButtonFrame, text="Delete an entry", command=deleteitem)
+deleteButton.pack(side=tkinter.TOP, padx=5)
+
 
 mainMenuButtonFrame = Frame(root)
 mainMenuButtonFrame.pack(fill=tkinter.BOTH,side=tkinter.TOP, pady=5)
