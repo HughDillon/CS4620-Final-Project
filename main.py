@@ -265,6 +265,8 @@ def insertbutton():
         connection.close()
     submit_button = Button(root, text="Add an entry to the Database", command=submit)
     submit_button.grid(row=6, column=0, columnspan=2, pady=10, padx=10, ipadx=100)    
+
+
 def mainScreenButton():
     clearDisplay()
     connection = sqlite3.connect('malwaredatabase.db')
@@ -277,7 +279,18 @@ def mainScreenButton():
         displaytree.insert('', 'end', values=i)
         
     displaytree.heading(1, text="Malware Type")
+    displaytree.column(1, minwidth=0,width=150)
     displaytree.heading(2, text="Number of Families")
+    displaytree.column(2, minwidth=0,width=150)
+    displaytree.heading(3, text="Number of Samples Found")
+    displaytree.column(3, minwidth=0,width=150)
+    displaytree.heading(4, text="Description", )
+    displaytree.column(4, minwidth=0,width=700)
+
+    ## Need to figure out how to output multivalue attributes
+    ##displaytree.heading(5, text="Symptoms", )
+    ##displaytree.column(5, minwidth=0,width=700)
+
     connection.close()
 
 
@@ -286,8 +299,6 @@ def searchDB():
     searchWindow = Tk()
     searchWindow.title('Search')
     searchWindow.geometry("500x500")
-        
-
     
     malwareName = StringVar()
     numSamples = IntVar()
@@ -317,7 +328,7 @@ def searchDB():
 
     nameFrame = ttk.Frame(searchWindow)
     nameFrame.pack(side=tkinter.TOP,pady=10)
-    nameLable = ttk.Label(nameFrame,text="Search By Malware Name: ")
+    nameLable = ttk.Label(nameFrame,text="Search By Malware Family: ")
     nameLable.pack(side=tkinter.LEFT,padx=8)
     nameEntry = ttk.Entry(nameFrame,width=30,textvariable=malwareName)
     nameEntry.pack(side=tkinter.RIGHT, padx= 10)
@@ -330,7 +341,7 @@ def searchDB():
     numEntry.pack(side=tkinter.RIGHT, padx= 10)
     greaterthan = ttk.Checkbutton(numSearchFrame, text="Greater than")
     
-
+ 
     def runSearch():
         clearDisplay()
         connection = sqlite3.connect('malwaredatabase.db')
@@ -396,13 +407,6 @@ displaytree.pack()
 
 mainScreenButton()
 
-displaytree.column(1, minwidth=0,width=150)
-
-displaytree.column(2, minwidth=0,width=150)
-displaytree.heading(3, text="Number of Samples Found")
-displaytree.column(3, minwidth=0,width=150)
-displaytree.heading(4, text="Description", )
-displaytree.column(4, minwidth=0,width=700)
 
 #setup family buttons and labels
 buttonFrame= Frame(root)
