@@ -23,6 +23,7 @@ def show_adware():
         displaytree.insert('', 'end', values=i)
     displaytree.heading(1, text="SR-Num")
     displaytree.heading(2, text="Malware Name")
+    connection.close()
 
 ## Output BACKDOOR table
 def show_backdoor():
@@ -37,6 +38,7 @@ def show_backdoor():
         displaytree.insert('', 'end', values=i)
     displaytree.heading(1, text="SR-Num")
     displaytree.heading(2, text="Malware Name")
+    connection.close()
 
 ## Output FILE_INFECTOR table
 def show_fileinfector():
@@ -51,6 +53,7 @@ def show_fileinfector():
         displaytree.insert('', 'end', values=i)
     displaytree.heading(1, text="SR-Num")
     displaytree.heading(2, text="Malware Name")
+    connection.close()
     
 
 ## Output PUA table
@@ -66,6 +69,7 @@ def show_pua():
         displaytree.insert('', 'end', values=i)
     displaytree.heading(1, text="SR-Num")
     displaytree.heading(2, text="Malware Name")
+    connection.close()
 
     ## Output RANSOMWARE table
 def show_ransomware():
@@ -80,6 +84,7 @@ def show_ransomware():
         displaytree.insert('', 'end', values=i)
     displaytree.heading(1, text="SR-Num")
     displaytree.heading(2, text="Malware Name")
+    connection.close()
 
     ## Output RISKWARE table
 def show_riskware():
@@ -94,6 +99,7 @@ def show_riskware():
         displaytree.insert('', 'end', values=i)
     displaytree.heading(1, text="SR-Num")
     displaytree.heading(2, text="Malware Name")
+    connection.close()
 
     ## Output SCAREWARE table
 def show_scareware():
@@ -108,6 +114,7 @@ def show_scareware():
         displaytree.insert('', 'end', values=i)
     displaytree.heading(1, text="SR-Num")
     displaytree.heading(2, text="Malware Name")
+    connection.close()
 
     ## Output TROJAN table
 def show_trojan():
@@ -122,6 +129,7 @@ def show_trojan():
         displaytree.insert('', 'end', values=i)
     displaytree.heading(1, text="SR-Num")
     displaytree.heading(2, text="Malware Name")
+    connection.close()
 
     ## Output TROJANBANKER table
 def show_trojanbanker():
@@ -136,6 +144,7 @@ def show_trojanbanker():
         displaytree.insert('', 'end', values=i)
     displaytree.heading(1, text="SR-Num")
     displaytree.heading(2, text="Malware Name")
+    connection.close()
 
     ## Output TROJANDROPPER table
 def show_trojandropper():
@@ -150,6 +159,7 @@ def show_trojandropper():
         displaytree.insert('', 'end', values=i)
     displaytree.heading(1, text="SR-Num")
     displaytree.heading(2, text="Malware Name")
+    connection.close()
 
     ## Output TROJANDSMS table
 def show_trojansms():
@@ -164,6 +174,7 @@ def show_trojansms():
         displaytree.insert('', 'end', values=i)
     displaytree.heading(1, text="SR-Num")
     displaytree.heading(2, text="Malware Name")
+    connection.close()
 
 ## Output TROJANSPY table
 def show_trojanspy():
@@ -178,6 +189,7 @@ def show_trojanspy():
         displaytree.insert('', 'end', values=i)
     displaytree.heading(1, text="SR-Num")
     displaytree.heading(2, text="Malware Name")
+    connection.close()
 
  ## Output ZERODAY table
 def show_zeroday():
@@ -192,6 +204,7 @@ def show_zeroday():
         displaytree.insert('', 'end', values=i)
     displaytree.heading(1, text="SR-Num")
     displaytree.heading(2, text="Malware Name")
+    connection.close()
 
 def insertbutton():
     ## open a new window
@@ -244,7 +257,125 @@ def insertbutton():
     submit_button = Button(root, text="Add an entry to the Database", command=submit)
     submit_button.grid(row=6, column=0, columnspan=2, pady=10, padx=10, ipadx=100)
             
+def mainScreenButton():
+    clearDisplay()
+    connection = sqlite3.connect('malwaredatabase.db')
+    cursor = connection.cursor()
+    query = "SELECT * From VIRUSTYPES"
+    cursor.execute(query)
+    rows = cursor.fetchall()
+    total = cursor.rowcount
+    for i in rows:
+        displaytree.insert('', 'end', values=i)
+        
+    displaytree.heading(1, text="Malware Type")
+    displaytree.heading(2, text="Number of Families")
+    connection.close()
 
+
+
+def searchDB():
+    searchWindow = Tk()
+    searchWindow.title('Search')
+    searchWindow.geometry("500x500")
+        
+
+    
+    malwareName = StringVar()
+    numSamples = IntVar()
+    options = [
+        "Adware",
+        "Backdoor",
+        "File_Infector",
+        "PUA",
+        "Ransomware",
+        "Riskware",
+        "Scareware",
+        "Trojan",
+        "Trojan_Banker",
+        "Trojan_Dropper",
+        "Trojan_SMS",
+        "Trojan_Spy",
+    ]
+
+    typeFrame= ttk.Frame(searchWindow)
+    typeFrame.pack(side=tkinter.TOP,pady=10)
+    selectionCombo = ttk.Combobox(typeFrame,values=options,width=30,)
+    selectionCombo['values'] = options
+    selectionCombo.pack(side= tkinter.RIGHT, padx=10)
+    typeLabel = ttk.Label(typeFrame, text="Select a Malware Type to Search: ")
+    typeLabel.pack(side=tkinter.LEFT,padx=5)
+
+
+    nameFrame = ttk.Frame(searchWindow)
+    nameFrame.pack(side=tkinter.TOP,pady=10)
+    nameLable = ttk.Label(nameFrame,text="Search By Malware Name: ")
+    nameLable.pack(side=tkinter.LEFT,padx=8)
+    nameEntry = ttk.Entry(nameFrame,width=30,textvariable=malwareName)
+    nameEntry.pack(side=tkinter.RIGHT, padx= 10)
+
+    numSearchFrame= ttk.Frame(searchWindow)
+    numSearchFrame.pack(side=tkinter.TOP, pady=10)
+    numSearchLabel = ttk.Label(numSearchFrame, text="Search by Number of Samples: ")
+    numSearchLabel.pack(side=tkinter.LEFT, padx=5)
+    numEntry = ttk.Entry(numSearchFrame,width=30,textvariable=numSamples)
+    numEntry.pack(side=tkinter.RIGHT, padx= 10)
+    greaterthan = ttk.Checkbutton(numSearchFrame, text="Greater than")
+    
+
+    def runSearch():
+        clearDisplay()
+        connection = sqlite3.connect('malwaredatabase.db')
+        cursor = connection.cursor()
+        query = "SELECT * From " + selectionCombo.get()
+        cursor.execute(query)
+        rows = cursor.fetchall()
+        total = cursor.rowcount
+        for i in rows:
+            displaytree.insert('', 'end', values=i)
+
+        connection.close()
+
+    sbuttonFrame = ttk.Frame(searchWindow)
+    sbuttonFrame.pack(side=tkinter.BOTTOM, pady=10)
+    sbutton = ttk.Button(sbuttonFrame, text="Search", command=runSearch)
+    sbutton.pack(side=tkinter.TOP)
+    searchWindow.mainloop()
+
+
+def deleteitem():
+    root = Tk()
+    root.title('Delete an entry from the database')
+    root.geometry("500x200")
+    displayframe = Frame(root)
+    displayframe.grid()
+    connection = sqlite3.connect('malwaredatabase.db')
+    c = connection.cursor()
+
+    delete_box = Entry(root, width=30)
+    delete_box.grid(row=0, column=1)
+    delete_box_label = Label(
+    root, text="Select virus type table to delete from:")
+    delete_box_label.grid(row=0, column=0)
+    srnum_box = Entry(root, width=30)
+    srnum_box.grid(row=1, column=1)
+    srnum_box_label = Label(root, text="Delete SR Number:")
+    srnum_box_label.grid(row=1, column=0)
+
+    def deleteentry():
+        ...
+       ## query = StringVar()
+       ## query = "DELETE FROM % s WHERE SR_Num = % s" % deletetable, deletesrnum
+        ##print(query)
+        ##print("hello")
+        ##query = "Delete FROM {} WHERE SR_Num = {}".format(deletetable, deletesrnum)
+
+    delete_button = Button(root, text="Delete entry", command=deleteentry())
+    delete_button.grid(row=4, column=0, columnspan=2, pady=10, padx=10, ipadx=100)
+    delete_box.delete(0, END)
+    srnum_box.delete(0, END)
+    connection.commit()
+    connection.close()
 
 #initialize window and display frame
 root = Tk()
@@ -253,25 +384,14 @@ root.geometry("1500x1000")
 displayframe = Frame(root)
 displayframe.pack(fill=tkinter.BOTH,side=tkinter.TOP)
 
-
-#establish database connection
-connection = sqlite3.connect('malwaredatabase.db')
-cursor = connection.cursor()
-query = "SELECT * From VIRUSTYPES"
-cursor.execute(query)
-rows = cursor.fetchall()
-total = cursor.rowcount
-
-
 #create initial display table
 displaytree = ttk.Treeview(displayframe, columns=(1,2,3,4), show="headings", height="15")
 displaytree.pack()
-for i in rows:
-    displaytree.insert('', 'end', values=i)
 
-displaytree.heading(1, text="Malware Type")
+mainScreenButton()
+
 displaytree.column(1, minwidth=0,width=150)
-displaytree.heading(2, text="Number of Families")
+
 displaytree.column(2, minwidth=0,width=150)
 displaytree.heading(3, text="Number of Samples Found")
 displaytree.column(3, minwidth=0,width=150)
@@ -280,7 +400,7 @@ displaytree.column(4, minwidth=0,width=700)
 
 #setup family buttons and labels
 buttonFrame= Frame(root)
-buttonFrame.pack(fill=tkinter.BOTH,side=tkinter.TOP, pady=25)
+buttonFrame.pack(fill=tkinter.BOTH,side=tkinter.TOP, pady=10)
 search_by_type_label = ttk.Label(buttonFrame, text="Select Malware Family to View: ")
 search_by_type_label.pack(side=LEFT)
 
@@ -311,13 +431,28 @@ smsButton.pack(side=tkinter.LEFT, padx=5)
 spyButton = ttk.Button(buttonFrame,text="Spy",command=show_trojanspy)
 spyButton.pack(side=tkinter.LEFT, padx=5)
 
+editingButtonFrame = Frame(root)
+editingButtonFrame.pack(fill=tkinter.BOTH,side=tkinter.TOP, pady=5)
+
+searchButton = ttk.Button(editingButtonFrame, text="Search Database", command=searchDB)
+searchButton.pack(side=tkinter.TOP, pady=10)
+insertButton = ttk.Button(editingButtonFrame, text="Insert an entry", command=insertbutton)
+insertButton.pack(side=tkinter.TOP, pady=10)
+deleteButton = ttk.Button(editingButtonFrame, text="Delete an entry", command=deleteitem)
+deleteButton.pack(side=tkinter.TOP, padx=5)
+
+
+mainMenuButtonFrame = Frame(root)
+mainMenuButtonFrame.pack(fill=tkinter.BOTH,side=tkinter.TOP, pady=5)
+menuButton = ttk.Button(mainMenuButtonFrame,text="Return data to original view",command=mainScreenButton)
+menuButton.pack(side=tkinter.TOP, pady=5)
+
+
+
 
 ##zeroDayButton = ttk.Button(buttonFrame,text="Zero-Day",command=show_zeroday)
 ##zeroDayButton.pack(side=tkinter.LEFT, padx=5)
 
-insertButton = ttk.Button(buttonFrame, text="Insert an entry", command=insertbutton)
-insertButton.pack(side=tkinter.LEFT, padx=5)
 
-connection.close()
+
 root.mainloop()
-
