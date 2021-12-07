@@ -279,9 +279,6 @@ def searchDB():
     searchWindow.title('Search')
     searchWindow.geometry("500x500")
         
-
-    
-    malwareName = StringVar()
     numSamples = IntVar()
     options = [
         "Adware",
@@ -311,23 +308,37 @@ def searchDB():
     nameFrame.pack(side=tkinter.TOP,pady=10)
     nameLable = ttk.Label(nameFrame,text="Search By Malware Name: ")
     nameLable.pack(side=tkinter.LEFT,padx=8)
-    nameEntry = ttk.Entry(nameFrame,width=30,textvariable=malwareName)
+    nameEntry = ttk.Entry(nameFrame,width=30)
     nameEntry.pack(side=tkinter.RIGHT, padx= 10)
 
+    numOptions = ["Greater Than" , "Less Than", "Equal To"]
     numSearchFrame= ttk.Frame(searchWindow)
     numSearchFrame.pack(side=tkinter.TOP, pady=10)
     numSearchLabel = ttk.Label(numSearchFrame, text="Search by Number of Samples: ")
     numSearchLabel.pack(side=tkinter.LEFT, padx=5)
     numEntry = ttk.Entry(numSearchFrame,width=30,textvariable=numSamples)
     numEntry.pack(side=tkinter.RIGHT, padx= 10)
-    greaterthan = ttk.Checkbutton(numSearchFrame, text="Greater than")
+    comparisonBox = ttk.Combobox(numSearchFrame, state="readonly", values=numOptions,width=20)
+    comparisonBox.pack(side = tkinter.LEFT,padx=5)
     
 
     def runSearch():
         clearDisplay()
         connection = sqlite3.connect('malwaredatabase.db')
         cursor = connection.cursor()
-        query = "SELECT * From " + selectionCombo.get()
+        if nameEntry.get() == "" and (numEntry.get() == "" or int(numEntry.get()) < -1):
+            query = "SELECT * From " + selectionCombo.get()
+        else:
+            if nameEntry.get() == "":
+                if comparisonBox.get() == "Greater Than":
+                    query = "SELECT * From " + selectionCombo.get() + " " + "WHERE Num_Captured_samples >=" + numEntry.get()
+                if comparisonBox.get() == "Less Than":
+                    query = "SELECT * From " + selectionCombo.get() + " " + "WHERE Num_Captured_samples <=" + numEntry.get()
+                if comparisonBox.get() == "Equal To":
+                    query = "SELECT * From " + selectionCombo.get() + " " + "WHERE Num_Captured_samples =" + numEntry.get()
+            else:
+                query = "SELECT * FROM " + selectionCombo.get() + " " + "WHERE FAMILY LIKE " + "'" + nameEntry.get() + "'"
+
         cursor.execute(query)
         rows = cursor.fetchall()
         total = cursor.rowcount
