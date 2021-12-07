@@ -354,8 +354,7 @@ def deleteitem():
 
     delete_box = Entry(root, width=30)
     delete_box.grid(row=0, column=1)
-    delete_box_label = Label(
-    root, text="Select virus type table to delete from:")
+    delete_box_label = Label(root, text="Select virus type table to delete from:")
     delete_box_label.grid(row=0, column=0)
     srnum_box = Entry(root, width=30)
     srnum_box.grid(row=1, column=1)
@@ -363,19 +362,19 @@ def deleteitem():
     srnum_box_label.grid(row=1, column=0)
 
     def deleteentry():
-        ...
-       ## query = StringVar()
-       ## query = "DELETE FROM % s WHERE SR_Num = % s" % deletetable, deletesrnum
-        ##print(query)
-        ##print("hello")
-        ##query = "Delete FROM {} WHERE SR_Num = {}".format(deletetable, deletesrnum)
+        string = "DELETE FROM " + delete_box.get() + " WHERE SR_Num = " + srnum_box.get()
+        print(string)
+        c.execute("DELETE FROM " + delete_box.get() + " WHERE SR_NUM = " + srnum_box.get())
+        connection.commit()
+        connection.close()
 
-    delete_button = Button(root, text="Delete entry", command=deleteentry())
+    delete_button = Button(root, text="Delete entry", command=deleteentry)
     delete_button.grid(row=4, column=0, columnspan=2, pady=10, padx=10, ipadx=100)
     delete_box.delete(0, END)
     srnum_box.delete(0, END)
     connection.commit()
     connection.close()
+    
 
 #initialize window and display frame
 root = Tk()
