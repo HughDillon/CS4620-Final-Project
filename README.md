@@ -14,7 +14,7 @@ Dataset
 
 Methodology
 
-● We will be using C++ to complete this project ● We plan on using other tools such as extensions, libraries, etc throughout the project as well ● We will be using Wt, a 3rd party web GUI library, juce, and boost libraries. ● Basic list of query types we will be using: (1) Finding the malware with the most occurrences across the dataset, (2) comparing different types of malware and how prevalent they are. (3) Comparing the total amount of malware samples found between the different types of malware. (4)Searching for specific malware family names
+● This project was made using python with the tkinter library for GUI elements. ● Basic list of query types we will be using: (1) Finding the malware with the most occurrences across the dataset, (2) comparing different types of malware and how prevalent they are. (3) Comparing the total amount of malware samples found between the different types of malware. (4)Searching for specific malware family names
 
 Milestones, Schedule, and Deliverables
 
