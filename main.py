@@ -224,7 +224,6 @@ def insertbutton():
     tablename_label.grid(row=4, column=0)
     ##submit button
     def submit():
-            ## Delete values in text boxes from previous submission
             
 
             connection = sqlite3.connect('malwaredatabase.db')
@@ -237,12 +236,14 @@ def insertbutton():
                 'numsamples' : numsamples.get(),
                 'description' : description.get()
             })
-            ## Save changes and close connection to DB
+            
+            ## Delete values in text boxes from previous submission
             srnum.delete(0, END)
             family.delete(0, END)
             numsamples.delete(0, END)
             description.delete(0, END)
             tablename.delete(0, END)
+            ## Save changes and close connection to DB
             connection.commit()
             connection.close()
             
@@ -250,25 +251,26 @@ def insertbutton():
     submit_button = Button(root, text="Add an entry to the Database", command=submit)
     submit_button.grid(row=6, column=0, columnspan=2, pady=10, padx=10, ipadx=100)
 
-def delete():
-    root = Tk()
-    root.title('Delete an entry from the database')
-    root.geometry("500x200")
-    displayframe = Frame(root)
-    displayframe.grid()
-    connection = sqlite3.connect('malwaredatabase.db')
-    c = connection.cursor()
+
+#def delete():
+    #root = Tk()
+    #root.title('Delete an entry from the database')
+    #root.geometry("500x200")
+    #displayframe = Frame(root)
+    #displayframe.grid()
+    #connection = sqlite3.connect('malwaredatabase.db')
+    #c = connection.cursor()
     
-    delete_box = Entry(root, width=30)
-    delete_box.grid(row=0, column=1)
-    delete_box_label = Label(root, text="Select virus type table to delete from:")
-    delete_box_label.grid(row=0, column =0)
-    srnum_box = Entry(root, width=30)
-    srnum_box.grid(row=1, column=1)
-    srnum_box_label = Label(root, text="Delete SR Number:")
-    srnum_box_label.grid(row=1, column =0)
-    print(delete_box.get())
-    print(srnum_box.get())
+    #delete_box = Entry(root, width=30)
+    #delete_box.grid(row=0, column=1)
+    #delete_box_label = Label(root, text="Select virus type table to delete from:")
+    #delete_box_label.grid(row=0, column =0)
+    #srnum_box = Entry(root, width=30)
+    #srnum_box.grid(row=1, column=1)
+    #srnum_box_label = Label(root, text="Delete SR Number:")
+    #srnum_box_label.grid(row=1, column =0)
+    #print(delete_box.get())
+    #print(srnum_box.get())
     
     ##def deleteentry():
         ##query = StringVar()
@@ -277,12 +279,12 @@ def delete():
         ##print("hello")
         ##query = "Delete FROM {} WHERE SR_Num = {}".format(deletetable, deletesrnum)
 
-    delete_button = Button(root, text="Delete entry", command=deleteentry())
-    delete_button.grid(row=4, column=0, columnspan=2, pady=10, padx=10, ipadx=100)
+    #delete_button = Button(root, text="Delete entry", command=deleteentry())
+    #delete_button.grid(row=4, column=0, columnspan=2, pady=10, padx=10, ipadx=100)
     ##delete_box.delete(0, END)
     ##srnum_box.delete(0, END)
-    connection.commit()
-    connection.close()
+    #connection.commit()
+    #connection.close()
 
 #initialize window and display frame
 root = Tk()
@@ -350,14 +352,12 @@ smsButton.pack(side=tkinter.LEFT, padx=5)
 spyButton = ttk.Button(buttonFrame,text="Spy",command=show_trojanspy)
 spyButton.pack(side=tkinter.LEFT, padx=5)
 
-
-
 ##zeroDayButton = ttk.Button(buttonFrame,text="Zero-Day",command=show_zeroday)
 ##zeroDayButton.pack(side=tkinter.LEFT, padx=5)
 
 insertButton = ttk.Button(buttonFrame, text="Insert an entry", command=insertbutton)
 insertButton.pack(side=tkinter.LEFT, padx=5)
-deleteButton = ttk.Button(buttonFrame, text="Delete an entry", command=delete)
+deleteButton = ttk.Button(buttonFrame, text="Delete an entry", command=deleteitem)
 deleteButton.pack(side=tkinter.LEFT, padx=5)
 
 
