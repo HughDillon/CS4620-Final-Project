@@ -482,7 +482,7 @@ def compareTwoTables():
 def moreInfoBrowserOpener():
     searchWindow = Tk()
     searchWindow.title('More Information')
-    searchWindow.geometry("500x200")
+    searchWindow.geometry("700x150")
     
     malwareName = StringVar()
     options = [
@@ -505,7 +505,7 @@ def moreInfoBrowserOpener():
     selectionCombo0 = ttk.Combobox(typeFrame,values=options,width=30,)
     selectionCombo0['values'] = options
     selectionCombo0.pack(side= tkinter.RIGHT, padx=10)
-    type = ttk.Label(typeFrame, text="Select a virustype to get more information about\nThis will open a page\non your machines default browser")
+    type = ttk.Label(typeFrame, text="Select a virustype to get more information about\nThis will open a page on your machines default browser")
     type.pack(side=tkinter.LEFT,padx=5)
     
     
@@ -547,7 +547,7 @@ def moreInfoBrowserOpener():
 
 def largestNumSamples():
     searchWindow = Tk()
-    searchWindow.title('More Information')
+    searchWindow.title('Find a family with the largest number of samples')
     searchWindow.geometry("500x200")
         
     malwareName = StringVar()
