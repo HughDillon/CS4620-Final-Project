@@ -299,7 +299,7 @@ def mainScreenButton():
 def searchDB():
     searchWindow = Tk()
     searchWindow.title('Search')
-    searchWindow.geometry("500x500")
+    searchWindow.geometry("500x300")
 
     numSamples = IntVar()
     options = [
@@ -456,9 +456,17 @@ def compareTwoTables():
         query = "SELECT * FROM " + selectionCombo0.get() + " INNER JOIN " + selectionCombo1.get() + " ON " + selectionCombo0.get() + ".Num_Captured_Samples = " + selectionCombo1.get() + ".Num_Captured_Samples"
         cursor.execute(query)
         rows = cursor.fetchall()
-        total = cursor.rowcount
+        total = cursor.rowcount /2
+
         for i in rows:
-            displaytree.insert('', 'end', values=i)
+            j = [i[0],i[1],i[2],i[3]]
+            #for k in j:
+            displaytree.insert('', 'end', values=j)
+
+        for i in rows:
+            k = [i[4],i[5],i[6],i[7]]
+            displaytree.insert('', 'end', values=k)
+            
  
 
         connection.close()
