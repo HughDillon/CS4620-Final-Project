@@ -22,8 +22,10 @@ def show_adware():
     total = cursor.rowcount
     for i in rows:
         displaytree.insert('', 'end', values=i)
-    displaytree.heading(1, text="SR-Num")
-    displaytree.heading(2, text="Malware Name")
+    displaytree.heading(1, text="SR_Num")
+    displaytree.heading(2, text="Family name")
+    displaytree.heading(3, text="Number of Samples Found")
+    displaytree.heading(4, text="Description", )
     connection.close()
 
 ## Output BACKDOOR table
@@ -37,8 +39,10 @@ def show_backdoor():
     total = cursor.rowcount
     for i in rows:
         displaytree.insert('', 'end', values=i)
-    displaytree.heading(1, text="SR-Num")
-    displaytree.heading(2, text="Malware Name")
+    displaytree.heading(1, text="SR_Num")
+    displaytree.heading(2, text="Family name")
+    displaytree.heading(3, text="Number of Samples Found")
+    displaytree.heading(4, text="Description", )
     connection.close()
 
 ## Output FILE_INFECTOR table
@@ -52,8 +56,10 @@ def show_fileinfector():
     total = cursor.rowcount
     for i in rows:
         displaytree.insert('', 'end', values=i)
-    displaytree.heading(1, text="SR-Num")
-    displaytree.heading(2, text="Malware Name")
+    displaytree.heading(1, text="SR_Num")
+    displaytree.heading(2, text="Family name")
+    displaytree.heading(3, text="Number of Samples Found")
+    displaytree.heading(4, text="Description", )
     connection.close()
     
 
@@ -68,8 +74,10 @@ def show_pua():
     total = cursor.rowcount
     for i in rows:
         displaytree.insert('', 'end', values=i)
-    displaytree.heading(1, text="SR-Num")
-    displaytree.heading(2, text="Malware Name")
+    displaytree.heading(1, text="SR_Num")
+    displaytree.heading(2, text="Family name")
+    displaytree.heading(3, text="Number of Samples Found")
+    displaytree.heading(4, text="Description", )
     connection.close()
 
     ## Output RANSOMWARE table
@@ -83,8 +91,10 @@ def show_ransomware():
     total = cursor.rowcount
     for i in rows:
         displaytree.insert('', 'end', values=i)
-    displaytree.heading(1, text="SR-Num")
-    displaytree.heading(2, text="Malware Name")
+    displaytree.heading(1, text="SR_Num")
+    displaytree.heading(2, text="Family name")
+    displaytree.heading(3, text="Number of Samples Found")
+    displaytree.heading(4, text="Description", )
     connection.close()
 
     ## Output RISKWARE table
@@ -98,8 +108,10 @@ def show_riskware():
     total = cursor.rowcount
     for i in rows:
         displaytree.insert('', 'end', values=i)
-    displaytree.heading(1, text="SR-Num")
-    displaytree.heading(2, text="Malware Name")
+    displaytree.heading(1, text="SR_Num")
+    displaytree.heading(2, text="Family name")
+    displaytree.heading(3, text="Number of Samples Found")
+    displaytree.heading(4, text="Description", )
     connection.close()
 
     ## Output SCAREWARE table
@@ -113,8 +125,10 @@ def show_scareware():
     total = cursor.rowcount
     for i in rows:
         displaytree.insert('', 'end', values=i)
-    displaytree.heading(1, text="SR-Num")
-    displaytree.heading(2, text="Malware Name")
+    displaytree.heading(1, text="SR_Num")
+    displaytree.heading(2, text="Family name")
+    displaytree.heading(3, text="Number of Samples Found")
+    displaytree.heading(4, text="Description", )
     connection.close()
 
     ## Output TROJAN table
@@ -128,8 +142,10 @@ def show_trojan():
     total = cursor.rowcount
     for i in rows:
         displaytree.insert('', 'end', values=i)
-    displaytree.heading(1, text="SR-Num")
-    displaytree.heading(2, text="Malware Name")
+    displaytree.heading(1, text="SR_Num")
+    displaytree.heading(2, text="Family name")
+    displaytree.heading(3, text="Number of Samples Found")
+    displaytree.heading(4, text="Description", )
     connection.close()
 
     ## Output TROJANBANKER table
@@ -143,8 +159,10 @@ def show_trojanbanker():
     total = cursor.rowcount
     for i in rows:
         displaytree.insert('', 'end', values=i)
-    displaytree.heading(1, text="SR-Num")
-    displaytree.heading(2, text="Malware Name")
+    displaytree.heading(1, text="SR_Num")
+    displaytree.heading(2, text="Family name")
+    displaytree.heading(3, text="Number of Samples Found")
+    displaytree.heading(4, text="Description", )
     connection.close()
 
     ## Output TROJANDROPPER table
@@ -158,8 +176,10 @@ def show_trojandropper():
     total = cursor.rowcount
     for i in rows:
         displaytree.insert('', 'end', values=i)
-    displaytree.heading(1, text="SR-Num")
-    displaytree.heading(2, text="Malware Name")
+    displaytree.heading(1, text="SR_Num")
+    displaytree.heading(2, text="Family name")
+    displaytree.heading(3, text="Number of Samples Found")
+    displaytree.heading(4, text="Description", )
     connection.close()
 
     ## Output TROJANDSMS table
@@ -173,8 +193,10 @@ def show_trojansms():
     total = cursor.rowcount
     for i in rows:
         displaytree.insert('', 'end', values=i)
-    displaytree.heading(1, text="SR-Num")
-    displaytree.heading(2, text="Malware Name")
+    displaytree.heading(1, text="SR_Num")
+    displaytree.heading(2, text="Family name")
+    displaytree.heading(3, text="Number of Samples Found")
+    displaytree.heading(4, text="Description", )
     connection.close()
 
 ## Output TROJANSPY table
@@ -188,8 +210,11 @@ def show_trojanspy():
     total = cursor.rowcount
     for i in rows:
         displaytree.insert('', 'end', values=i)
-    displaytree.heading(1, text="SR-Num")
-    displaytree.heading(2, text="Malware Name")
+        
+    displaytree.heading(1, text="SR_Num")
+    displaytree.heading(2, text="Family name")
+    displaytree.heading(3, text="Number of Samples Found")
+    displaytree.heading(4, text="Description", )
     connection.close()
 
  ## Output ZERODAY table
@@ -203,8 +228,10 @@ def show_zeroday():
     total = cursor.rowcount
     for i in rows:
         displaytree.insert('', 'end', values=i)
-    displaytree.heading(1, text="SR-Num")
-    displaytree.heading(2, text="Malware Name")
+    displaytree.heading(1, text="SR_Num")
+    displaytree.heading(2, text="Family name")
+    displaytree.heading(3, text="Number of Samples Found")
+    displaytree.heading(4, text="Description", )
     connection.close()
 
 def insertbutton():
@@ -366,6 +393,12 @@ def searchDB():
         total = cursor.rowcount
         for i in rows:
             displaytree.insert('', 'end', values=i)
+        
+        displaytree.heading(1, text="SR_Num")
+        displaytree.heading(2, text="Family name")
+        displaytree.heading(3, text="Number of Samples Found")
+        displaytree.heading(4, text="Description", )
+        connection.close()
 
         connection.close()
 
@@ -467,7 +500,10 @@ def compareTwoTables():
             k = [i[4],i[5],i[6],i[7]]
             displaytree.insert('', 'end', values=k)
             
- 
+        displaytree.heading(1, text="SR_Num")
+        displaytree.heading(2, text="Family name")
+        displaytree.heading(3, text="Number of Samples Found")
+        displaytree.heading(4, text="Description", )
 
         connection.close()
 
@@ -586,6 +622,10 @@ def largestNumSamples():
             for i in rows:
                 displaytree.insert('', 'end', values=i)
 
+            displaytree.heading(1, text="Family")
+            displaytree.heading(2,text="Number of Samples")
+            displaytree.heading(3,text="")
+            displaytree.heading(4,text="")
             connection.close()
             
 
@@ -645,36 +685,36 @@ spyButton.pack(side=tkinter.LEFT, padx=5)
 editingButtonFrame = Frame(root)
 editingButtonFrame.pack(fill=tkinter.BOTH,side=tkinter.TOP, pady=5)
 
-searchButton = ttk.Button(editingButtonFrame, text="Search Database", command=searchDB)
+searchButton = ttk.Button(editingButtonFrame, text="Search Database", width=50, command=searchDB)
 searchButton.pack(side=tkinter.TOP, pady=10)
-insertButton = ttk.Button(editingButtonFrame, text="Insert an entry", command=insertbutton)
+insertButton = ttk.Button(editingButtonFrame, text="Insert an entry", width=50, command=insertbutton)
 insertButton.pack(side=tkinter.TOP, pady=10)
-deleteButton = ttk.Button(editingButtonFrame, text="Delete an entry", command=deleteitem)
+deleteButton = ttk.Button(editingButtonFrame, text="Delete an entry", width=50, command=deleteitem)
 deleteButton.pack(side=tkinter.TOP, padx=5)
 
 
 mainMenuButtonFrame = Frame(root)
-mainMenuButtonFrame.pack(fill=tkinter.BOTH,side=tkinter.TOP, pady=5)
-menuButton = ttk.Button(mainMenuButtonFrame,text="Return to the main menu screen",command=mainScreenButton)
+mainMenuButtonFrame.pack(fill=tkinter.BOTH,side=tkinter.BOTTOM, pady=5)
+menuButton = ttk.Button(mainMenuButtonFrame,text="Return to the main menu screen",width=50,command=mainScreenButton)
 menuButton.pack(side=tkinter.TOP, pady=5)
 
 compareTwoTablesFrame = Frame(root)
 compareTwoTablesFrame = Frame(root)
-compareTwoTablesFrame.pack(fill=tkinter.BOTH,side=tkinter.TOP, pady=7)
-compareTwoTablesButton = ttk.Button(mainMenuButtonFrame,text="Match number of samples between two tables",command=compareTwoTables)
-compareTwoTablesButton.pack(side=tkinter.TOP, pady=8)
+compareTwoTablesFrame.pack(fill=tkinter.BOTH,side=tkinter.TOP, pady=5)
+compareTwoTablesButton = ttk.Button(editingButtonFrame,text="Match number of samples between two tables", width=50, command=compareTwoTables)
+compareTwoTablesButton.pack(side=tkinter.TOP, pady=10)
 
 
 largestNumSamplesFrame = Frame(root)
 largestNumSamplesFrame = Frame(root)
 largestNumSamplesFrame.pack(fill=tkinter.BOTH,side=tkinter.TOP, pady=8)
-largestNumSamplesButton = ttk.Button(mainMenuButtonFrame,text="Find a family with the largest number of samples",command=largestNumSamples)
+largestNumSamplesButton = ttk.Button(editingButtonFrame,text="Find a family with the largest number of samples",width=50, command=largestNumSamples)
 largestNumSamplesButton.pack(side=tkinter.TOP, pady=8)
 
 moreInfoFrame = Frame(root)
 moreInfoFrame = Frame(root)
 moreInfoFrame.pack(fill=tkinter.BOTH,side=tkinter.TOP, pady=9)
-moreInfoButton = ttk.Button(mainMenuButtonFrame,text="Get more information on a virustype",command=moreInfoBrowserOpener)
+moreInfoButton = ttk.Button(editingButtonFrame,text="Get more information on a virustype", width=50,command=moreInfoBrowserOpener)
 moreInfoButton.pack(side=tkinter.TOP, pady=9)
 
 
