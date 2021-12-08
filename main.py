@@ -545,6 +545,56 @@ def moreInfoBrowserOpener():
     submitbutton.pack(side=tkinter.TOP)
     searchWindow.mainloop()
 
+def largestNumSamples():
+    searchWindow = Tk()
+    searchWindow.title('More Information')
+    searchWindow.geometry("500x200")
+        
+    malwareName = StringVar()
+    options = [
+        "Adware",
+        "Backdoor",
+        "File_Infector",
+        "PUA",
+        "Ransomware",
+        "Riskware",
+        "Scareware",
+        "Trojan",
+        "Trojan_Banker",
+        "Trojan_Dropper",
+        "Trojan_SMS",
+        "Trojan_Spy",
+    ]
+
+    typeFrame= ttk.Frame(searchWindow)
+    typeFrame.pack(side=tkinter.TOP,pady=10)
+    selectionCombo0 = ttk.Combobox(typeFrame,values=options,width=30,)
+    selectionCombo0['values'] = options
+    selectionCombo0.pack(side= tkinter.RIGHT, padx=10)
+    type = ttk.Label(typeFrame, text="Select a virustype:")
+    type.pack(side=tkinter.LEFT,padx=5)
+
+    ## SELECT FAMILY, MAX(Num_Captured_Samples) FROM ADWARE
+    def findLargestNumSamples():
+            clearDisplay()
+            connection = sqlite3.connect('malwaredatabase.db')
+            c = connection.cursor()
+            query = "SELECT FAMILY, MAX(Num_Captured_Samples) FROM " + selectionCombo0.get()
+            c.execute(query)
+            rows = c.fetchall()
+            total = c.rowcount
+            for i in rows:
+                displaytree.insert('', 'end', values=i)
+
+            connection.close()
+            
+
+    submitbuttonFrame = ttk.Frame(searchWindow)
+    submitbuttonFrame.pack(side=tkinter.BOTTOM, pady=20)
+    submitbutton = ttk.Button(submitbuttonFrame, text="Submit", command=findLargestNumSamples)
+    submitbutton.pack(side=tkinter.TOP)
+    searchWindow.mainloop()
+
 #initialize window and display frame
 root = Tk()
 root.title('Malware Database Browser')
@@ -612,14 +662,22 @@ compareTwoTablesFrame = Frame(root)
 compareTwoTablesFrame = Frame(root)
 compareTwoTablesFrame.pack(fill=tkinter.BOTH,side=tkinter.TOP, pady=7)
 compareTwoTablesButton = ttk.Button(mainMenuButtonFrame,text="Match number of samples between two tables",command=compareTwoTables)
-compareTwoTablesButton.pack(side=tkinter.TOP, pady=7)
+compareTwoTablesButton.pack(side=tkinter.TOP, pady=8)
 
+
+largestNumSamplesFrame = Frame(root)
+largestNumSamplesFrame = Frame(root)
+largestNumSamplesFrame.pack(fill=tkinter.BOTH,side=tkinter.TOP, pady=8)
+largestNumSamplesButton = ttk.Button(mainMenuButtonFrame,text="Find a family with the largest number of samples",command=largestNumSamples)
+largestNumSamplesButton.pack(side=tkinter.TOP, pady=8)
 
 moreInfoFrame = Frame(root)
 moreInfoFrame = Frame(root)
-moreInfoFrame.pack(fill=tkinter.BOTH,side=tkinter.TOP, pady=25)
+moreInfoFrame.pack(fill=tkinter.BOTH,side=tkinter.TOP, pady=9)
 moreInfoButton = ttk.Button(mainMenuButtonFrame,text="Get more information on a virustype",command=moreInfoBrowserOpener)
-moreInfoButton.pack(side=tkinter.TOP, pady=7)
+moreInfoButton.pack(side=tkinter.TOP, pady=9)
+
+
 
 
 
