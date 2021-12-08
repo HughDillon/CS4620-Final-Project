@@ -244,8 +244,8 @@ def insertbutton():
 
         connection = sqlite3.connect('malwaredatabase.db')
         c = connection.cursor()
-        print("INSERT OR IGNORE INTO " + table.get() + " VALUES (" + srnum.get() + ", " + "'" + family.get() + "'" + ", " + numsamples.get() + ", " + "'" + description.get() + "'" + ")")
-        c.execute("INSERT OR IGNORE INTO " + table.get() + " VALUES (" + srnum.get() + ", " + "'" + family.get() + "'" + ", " + numsamples.get() + ", " + "'" + description.get() + "'" + ")")
+        print("INSERT OR IGNORE INTO " + table.get() + " VALUES(" + srnum.get() + ", " + "'" + family.get() + "'" + ", " + numsamples.get() + ", " + "'" + description.get() + "'" + ")")
+        c.execute("INSERT OR IGNORE INTO " + table.get() + " VALUES(" + srnum.get() + ", " + "'" + family.get() + "'" + ", " + numsamples.get() + ", " + "'" + description.get() + "'" + ")")
         # Insert into the table
         ##c.execute("INSERT OR IGNORE INTO ADWARE VALUES (:srnum, :family, :numsamples, :description)",
         ##{
