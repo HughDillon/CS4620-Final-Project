@@ -363,7 +363,7 @@ def searchDB():
     numOptions = ["Greater Than" , "Less Than", "Equal To"]
     numSearchFrame= ttk.Frame(searchWindow)
     numSearchFrame.pack(side=tkinter.TOP, pady=10)
-    numSearchLabel = ttk.Label(numSearchFrame, text="Search by Number of Samples: ")
+    numSearchLabel = ttk.Label(numSearchFrame, text="OR: Search by Number of Samples: ")
     numSearchLabel.pack(side=tkinter.LEFT, padx=5)
     numEntry = ttk.Entry(numSearchFrame,width=30,textvariable=numSamples)
     numEntry.pack(side=tkinter.RIGHT, padx= 10)
