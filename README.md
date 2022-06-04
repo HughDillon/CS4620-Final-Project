@@ -2,7 +2,9 @@
 
 === Malware Database Application===
 
-Database-Application of Android malware database We will be creating a database that has all of the different types of android malware viruses that are running rampant along with their family types
+Database-Application of Android malware database 
+
+We will be creating a database that has all of the different types of android malware viruses that are running rampant along with their family types
 
 Motivation
 
