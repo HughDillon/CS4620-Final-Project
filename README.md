@@ -24,4 +24,7 @@ Milestones, Schedule, and Deliverables
 
 Team Members and Responsibilities
 
-● Anthony Dade & Hugh Dillon ● Split the majority of work, but if one of us knows how to create certain features more efficiently, that person will be the one decided to work on the feature. ● Hugh: Backend UI Development, Implement injection security features/ other vulnerabilities, implement queries 1 and 2. General application development ● Anthony: (Frontend) Develop UI, Implement reasonable DB input method and dynamic input method, queries #3, and #
+● Anthony Dade & Hugh Dillon 
+● Split the majority of work, but if one of us knows how to create certain features more efficiently, that person will be the one decided to work on the feature.
+● Hugh: Backend UI Development, Implement injection security features/ other vulnerabilities, implement queries 1 and 2. General application development 
+● Anthony: (Frontend) Develop UI, Implement reasonable DB input method and dynamic input method, queries #3, and #
